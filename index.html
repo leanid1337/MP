@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobil Pohotovost — Nejlepší ceny na nejnovější technologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0a0a;
+  --bg2:       #111111;
+  --card:      #1a1a1a;
+  --yellow:    #f5c800;
+  --green:     #00c853;
+  --red:       #e53935;
+  --text:      #ffffff;
+  --muted:     #9e9e9e;
+  --border:    #2a2a2a;
+  --radius:    8px;
+  --ease:      0.2s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; }
+
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── TOPBAR ─────────────────────────────────────────── */
+.topbar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 7px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.topbar .wrap { display: flex; justify-content: flex-end; gap: 20px; }
+.topbar a { color: var(--muted); transition: color var(--ease); }
+.topbar a:hover { color: var(--text); }
+
+/* ── HEADER ─────────────────────────────────────────── */
+.header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 14px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.logo-mark {
+  width: 34px; height: 34px;
+  background: var(--yellow);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { display: block; }
+.logo-name { font-size: 15px; font-weight: 700; line-height: 1.15; }
+.logo-sub  { font-size: 11px; color: var(--muted); font-weight: 400; }
+
+/* Search */
+.search { position: relative; }
+.search input {
+  width: 100%;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  padding: 10px 18px 10px 42px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--ease);
+}
+.search input::placeholder { color: var(--muted); }
+.search input:focus { border-color: var(--yellow); }
+.search-ico {
+  position: absolute; left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted); pointer-events: none;
+  display: flex;
+}
+
+/* Header actions */
+.hactions { display: flex; align-items: center; gap: 2px; }
+.hbtn {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 11px;
+  background: none; border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 11px; font-weight: 500;
+  transition: color var(--ease), background var(--ease);
+  white-space: nowrap;
+}
+.hbtn:hover { color: var(--text); background: var(--card); }
+.hbtn.cart-btn { color: var(--text); position: relative; }
+.cart-count {
+  position: absolute; top: 5px; right: 7px;
+  background: var(--green); color: #000;
+  font-size: 9px; font-weight: 700;
+  width: 15px; height: 15px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+
+/* Nav */
+.navbar {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto; scrollbar-width: none;
+}
+.navbar::-webkit-scrollbar { display: none; }
+.navbar-inner {
+  display: flex; max-width: 1280px; margin: 0 auto; padding: 0 24px;
+}
+.nav-link {
+  padding: 13px 15px;
+  font-size: 13px; font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color var(--ease), border-color var(--ease);
+  cursor: pointer;
+}
+.nav-link:hover  { color: var(--text); border-bottom-color: var(--yellow); }
+.nav-link.active { color: var(--text); border-bottom-color: var(--yellow); }
+.nav-link.hot    { color: var(--yellow); font-weight: 600; }
+
+/* ── HERO ────────────────────────────────────────────── */
+.hero {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 0 64px;
+}
+@keyframes slideInRight {
+  from { transform: translateX(120px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 98px;
+  align-items: center;
+  min-height: 520px;
+  overflow: hidden;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.hero-img-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  padding: 5px 12px; border-radius: 20px;
+}
+.hero h1 {
+  font-size: clamp(32px, 4.5vw, 58px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.hero-sub {
+  font-size: 16px; color: var(--muted);
+  margin-bottom: 36px; line-height: 1.65;
+  max-width: 440px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+
+.btn-yellow-fill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--yellow); color: #000;
+  font-size: 14px; font-weight: 700;
+  padding: 13px 26px; border-radius: var(--radius);
+  transition: opacity var(--ease), transform var(--ease);
+}
+.btn-yellow-fill:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: none; color: var(--text);
+  font-size: 14px; font-weight: 600;
+  padding: 13px 26px; border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  transition: border-color var(--ease), color var(--ease), transform var(--ease);
+}
+.btn-ghost:hover { border-color: var(--text); transform: translateY(-1px); }
+
+.trust-badges { display: flex; gap: 22px; flex-wrap: wrap; }
+.trust-badge {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--muted); font-weight: 500;
+}
+.trust-badge svg { color: var(--green); flex-shrink: 0; }
+
+/* Hero image */
+.hero-img-wrap {
+  width: 100%;
+  max-width: 952px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  transform: rotate(-8deg) scale(2.24);
+  transform-origin: center center;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 95%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 95%);
+}
+
+/* ── CATALOG ─────────────────────────────────────────── */
+.catalog { padding: 64px 0; }
+
+.catalog-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  margin-bottom: 28px;
+}
+.catalog-title { font-size: 28px; font-weight: 700; }
+.catalog-count { font-size: 13px; color: var(--muted); }
+
+/* Filter pills */
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.filter-pill {
+  padding: 9px 20px;
+  background: var(--card); color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  font-size: 13px; font-weight: 500;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+}
+.filter-pill:hover:not(.active) { border-color: #555; }
+.filter-pill.active {
+  background: var(--yellow); color: #000;
+  border-color: var(--yellow);
+  font-weight: 700;
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.product-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: border-color var(--ease), transform var(--ease), box-shadow var(--ease);
+  cursor: pointer;
+}
+.product-card:hover {
+  border-color: var(--yellow);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.product-card[hidden] { display: none; }
+
+.product-img {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+.product-img img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.product-img img.img-fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+}
+
+.product-body {
+  padding: 16px;
+  display: flex; flex-direction: column;
+  gap: 6px; flex: 1;
+}
+
+.product-brand {
+  font-size: 11px; font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+.product-name {
+  font-size: 14px; font-weight: 600; color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.product-badge {
+  display: inline-block;
+  padding: 3px 8px; border-radius: 4px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+  width: fit-content;
+}
+.badge-sale  { background: var(--red);   color: #fff; }
+.badge-super { background: var(--green); color: #000; }
+
+.product-price {
+  font-size: 20px; font-weight: 700; color: var(--yellow);
+  margin-top: 4px; line-height: 1.2;
+}
+.product-monthly { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+.btn-buy {
+  display: block; width: 100%;
+  background: var(--green); color: #000;
+  font-size: 14px; font-weight: 700;
+  padding: 12px;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  transition: opacity var(--ease);
+  flex-shrink: 0;
+  margin-top: auto;
+}
+.btn-buy:hover { opacity: 0.85; }
+
+/* ── PROMO ───────────────────────────────────────────── */
+.promo { padding: 0 0 64px; }
+.promo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--yellow);
+  border-radius: 12px;
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.promo-eyebrow {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+}
+.promo-title {
+  font-size: 32px; font-weight: 800; color: var(--text);
+  line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.promo-sub { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 480px; }
+.promo-sub strong { color: var(--text); }
+
+.btn-yellow-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: none; color: var(--yellow);
+  border: 1.5px solid var(--yellow);
+  font-size: 14px; font-weight: 700;
+  padding: 13px 26px; border-radius: var(--radius);
+  white-space: nowrap; flex-shrink: 0;
+  transition: background var(--ease), color var(--ease);
+}
+.btn-yellow-outline:hover { background: var(--yellow); color: #000; }
+
+/* ── FOOTER ─────────────────────────────────────────── */
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 56px 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-logo .logo-mark { width: 30px; height: 30px; }
+.footer-logo .logo-name { font-size: 14px; }
+.footer-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 22px; max-width: 260px; }
+.social-row { display: flex; gap: 8px; }
+.social-btn {
+  width: 34px; height: 34px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  transition: border-color var(--ease), color var(--ease);
+}
+.social-btn:hover { border-color: var(--text); color: var(--text); }
+.footer-col h4 {
+  font-size: 12px; font-weight: 600; color: var(--text);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 9px; }
+.footer-links a { font-size: 13px; color: var(--muted); transition: color var(--ease); }
+.footer-links a:hover { color: var(--text); }
+.contact-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.contact-row svg { color: var(--muted); flex-shrink: 0; margin-top: 1px; }
+.contact-row .cr-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.contact-row .cr-text strong { color: var(--text); display: block; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0;
+  font-size: 12px; color: var(--muted);
+  flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom a { color: var(--muted); transition: color var(--ease); }
+.footer-bottom a:hover { color: var(--text); }
+.footer-legal { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; min-height: unset; }
+  .hero-img-col { display: none; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .promo-card { flex-direction: column; padding: 32px 24px; }
+}
+@media (max-width: 640px) {
+  .header-row { grid-template-columns: auto 1fr; }
+  .hactions { display: none; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 28px; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn-yellow-fill,
+  .hero-ctas .btn-ghost { width: 100%; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <a href="#">Sledovat objednávku</a>
+    <a href="#">Jak nakupovat</a>
+    <a href="#">Prodejny</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-row">
+
+    <a class="logo" href="#">
+      <div class="logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#000"><path d="M13 2 4.5 13.5H11L10 22 19.5 10.5H13Z"/></svg>
+      </div>
+      <div>
+        <div class="logo-name">Mobil Pohotovost</div>
+        <div class="logo-sub">Nejlepší ceny</div>
+      </div>
+    </a>
+
+    <div class="search">
+      <span class="search-ico">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </span>
+      <input type="search" placeholder="Hledat telefony, tablety, notebooky…" aria-label="Vyhledat">
+    </div>
+
+    <div class="hactions">
+      <button class="hbtn" aria-label="Prodejny">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Prodejny
+      </button>
+      <button class="hbtn" aria-label="Kontakt">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81 19.79 19.79 0 0 1 .46 1.09 2 2 0 0 1 2.18 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 8.09a16 16 0 0 0 6 6l.56-.56a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Kontakt
+      </button>
+      <button class="hbtn" aria-label="Přihlásit se">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Přihlásit
+      </button>
+      <button class="hbtn cart-btn" aria-label="Košík" id="cartBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+        Košík
+      </button>
+    </div>
+
+  </div>
+
+  <nav class="navbar" aria-label="Kategorie">
+    <div class="navbar-inner">
+      <span class="nav-link hot active">Limitované nabídky</span>
+      <span class="nav-link">Výkup</span>
+      <span class="nav-link">Telefony</span>
+      <span class="nav-link">Chytré hodinky</span>
+      <span class="nav-link">Příslušenství</span>
+      <span class="nav-link">Audio</span>
+      <span class="nav-link">Tablety</span>
+      <span class="nav-link">Notebooky</span>
+      <span class="nav-link">Gaming</span>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Novinky 2026</div>
+      <h1 id="hero-h">Nejlepší ceny na nejnovější technologie</h1>
+      <p class="hero-sub">Telefony, tablety, notebooky a příslušenství. Doručení zdarma a záruka 3 roky na vše.</p>
+      <div class="hero-ctas">
+        <button class="btn-yellow-fill">
+          Nakupovat
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-ghost">Limitované nabídky</button>
+      </div>
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Doprava zdarma
+        </div>
+        <div class="trust-badge">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Záruka 3 roky
+        </div>
+        <div class="trust-badge">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Až 7 000 Kč bonus
+        </div>
+      </div>
+    </div>
+    <div class="hero-img-col">
+      <img
+        src="mp_photos/IphoneHero.png"
+        alt="iPhone 17 Pro"
+        style="width:100%;max-width:588px;height:auto;display:block;margin:0 auto;transform:rotate(-15deg) scale(4.48);transform-origin:center center;mask-image:linear-gradient(to bottom,black 60%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,black 60%,transparent 100%);animation:slideInRight 0.8s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog" aria-labelledby="catalog-h">
+  <div class="wrap">
+
+    <div class="catalog-header">
+      <h2 class="catalog-title" id="catalog-h">Telefony</h2>
+      <span class="catalog-count" id="productCount">22 produktů</span>
+    </div>
+
+    <!-- Filter -->
+    <div class="filters" role="group" aria-label="Filtrovat dle značky">
+      <button class="filter-pill active" data-filter="all">Všechny</button>
+      <button class="filter-pill" data-filter="apple">Apple</button>
+      <button class="filter-pill" data-filter="samsung">Samsung</button>
+      <button class="filter-pill" data-filter="xiaomi">Xiaomi</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="product-grid" id="productGrid">
+
+      <!-- ── APPLE ── -->
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-15-128gb-cerna-p-176985.avif" alt="iPhone 15 128GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 15 128GB Černá</div>
+          <span class="product-badge badge-sale">SLEVA 15%</span>
+          <div class="product-price">9 990 Kč</div>
+          <div class="product-monthly">od 278 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-17-256gb-cerna-p-283864.avif" alt="iPhone 17 256GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 17 256GB Černá</div>
+          <div class="product-price">24 990 Kč</div>
+          <div class="product-monthly">od 694 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-17-256gb-levandulova-p-2838.avif" alt="iPhone 17 256GB Levandulová" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 17 256GB Levandulová</div>
+          <div class="product-price">24 990 Kč</div>
+          <div class="product-monthly">od 694 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-17-pro-256gb-kos-micky-oranz.avif" alt="iPhone 17 Pro 256GB Vesmírná oranžová" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 17 Pro 256GB Vesmírná oranžová</div>
+          <span class="product-badge badge-super">SUPER CENA</span>
+          <div class="product-price">32 990 Kč</div>
+          <div class="product-monthly">od 917 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-17-pro-256gb-strib-na-p-283.avif" alt="iPhone 17 Pro 256GB Stříbrná" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 17 Pro 256GB Stříbrná</div>
+          <div class="product-price">32 990 Kč</div>
+          <div class="product-monthly">od 917 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-17-pro-256gb-tem-ne-modra-p-.avif" alt="iPhone 17 Pro 256GB Tmavě modrá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 17 Pro 256GB Tmavě modrá</div>
+          <div class="product-price">32 990 Kč</div>
+          <div class="product-monthly">od 917 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="apple">
+        <div class="product-img">
+          <img src="mp_photos/telefony/apple-iphone-17-pro-max-256gb-kosmicky-o.avif" alt="iPhone 17 Pro Max 256GB" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 17 Pro Max 256GB</div>
+          <div class="product-price">39 990 Kč</div>
+          <div class="product-monthly">od 1 111 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <!-- ── SAMSUNG ── -->
+      <article class="product-card" data-brand="samsung">
+        <div class="product-img">
+          <img src="mp_photos/telefony/samsung-galaxy-a16-a165f-4gb-128gb-black.avif" alt="Galaxy A16 128GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">Galaxy A16 128GB Černá</div>
+          <div class="product-price">4 490 Kč</div>
+          <div class="product-monthly">od 125 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="samsung">
+        <div class="product-img">
+          <img src="mp_photos/telefony/samsung-galaxy-a16-a165f-4gb-128gb-light.avif" alt="Galaxy A16 128GB Světlá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">Galaxy A16 128GB Světlá</div>
+          <div class="product-price">4 490 Kč</div>
+          <div class="product-monthly">od 125 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="samsung">
+        <div class="product-img">
+          <img src="mp_photos/telefony/samsung-galaxy-a26-5g-6gb-128gb-black-b-.avif" alt="Galaxy A26 5G 128GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">Galaxy A26 5G 128GB Černá</div>
+          <div class="product-price">6 990 Kč</div>
+          <div class="product-monthly">od 194 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="samsung">
+        <div class="product-img">
+          <img src="mp_photos/telefony/samsung-galaxy-s26-12gb-256gb-black-p-29.avif" alt="Galaxy S26 256GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">Galaxy S26 256GB Černá</div>
+          <span class="product-badge badge-super">SUPER CENA</span>
+          <div class="product-price">18 490 Kč</div>
+          <div class="product-monthly">od 514 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="samsung">
+        <div class="product-img">
+          <img src="mp_photos/telefony/samsung-galaxy-s26-12gb-256gb-cobalt-vio.avif" alt="Galaxy S26 256GB Cobalt Violet" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">Galaxy S26 256GB Cobalt Violet</div>
+          <div class="product-price">18 490 Kč</div>
+          <div class="product-monthly">od 514 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="samsung">
+        <div class="product-img">
+          <img src="mp_photos/telefony/samsung-galaxy-s26-ultra-12gb-256gb-blac.avif" alt="Galaxy S26 Ultra 256GB" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">Galaxy S26 Ultra 256GB</div>
+          <div class="product-price">35 690 Kč</div>
+          <div class="product-monthly">od 991 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <!-- ── XIAOMI ── -->
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-17t-12gb-256gb-black-p-296170.avif" alt="Xiaomi 17T 256GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Xiaomi 17T 256GB Černá</div>
+          <div class="product-price">14 990 Kč</div>
+          <div class="product-monthly">od 416 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-17t-12gb-256gb-blue-p-296177.avif" alt="Xiaomi 17T 256GB Modrá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Xiaomi 17T 256GB Modrá</div>
+          <div class="product-price">14 990 Kč</div>
+          <div class="product-monthly">od 416 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-17t-12gb-256gb-violet-p-296163.avif" alt="Xiaomi 17T 256GB Fialová" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Xiaomi 17T 256GB Fialová</div>
+          <div class="product-price">14 990 Kč</div>
+          <div class="product-monthly">od 416 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-17t-pro-12gb-256gb-black-p-29.avif" alt="Xiaomi 17T Pro 256GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Xiaomi 17T Pro 256GB Černá</div>
+          <span class="product-badge badge-sale">SLEVA 10%</span>
+          <div class="product-price">16 990 Kč</div>
+          <div class="product-monthly">od 472 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-17t-pro-12gb-256gb-deep-blue-p-29.avif" alt="Xiaomi 17T Pro 256GB Deep Blue" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Xiaomi 17T Pro 256GB Deep Blue</div>
+          <div class="product-price">16 990 Kč</div>
+          <div class="product-monthly">od 472 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-17t-pro-12gb-256gb-deep-violet-p-.avif" alt="Xiaomi 17T Pro 256GB Deep Violet" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Xiaomi 17T Pro 256GB Deep Violet</div>
+          <div class="product-price">16 990 Kč</div>
+          <div class="product-monthly">od 472 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-15c-4gb-128gb-mint-green-b-.avif" alt="Redmi 15C 128GB Mint Green" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi 15C 128GB Mint Green</div>
+          <div class="product-price">3 490 Kč</div>
+          <div class="product-monthly">od 97 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-15c-8gb-256gb-moonlight-blu.avif" alt="Redmi 15C 256GB Moonlight Blue" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi 15C 256GB Moonlight Blue</div>
+          <div class="product-price">4 290 Kč</div>
+          <div class="product-monthly">od 119 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-15c-128gb-4gb-midnight-blac.avif" alt="Redmi 15C 128GB Midnight Black" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi 15C 128GB Midnight Black</div>
+          <div class="product-price">3 490 Kč</div>
+          <div class="product-monthly">od 97 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-a5-3gb-64gb-ocean-blue-p-27.avif" alt="Redmi A5 64GB Ocean Blue" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi A5 64GB Ocean Blue</div>
+          <div class="product-price">2 290 Kč</div>
+          <div class="product-monthly">od 64 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-note-15-6gb-128gb-black-p-2.avif" alt="Redmi Note 15 128GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi Note 15 128GB Černá</div>
+          <div class="product-price">5 990 Kč</div>
+          <div class="product-monthly">od 166 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-note-15-6gb-128gb-purple-p-.avif" alt="Redmi Note 15 128GB Fialová" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi Note 15 128GB Fialová</div>
+          <div class="product-price">5 990 Kč</div>
+          <div class="product-monthly">od 166 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-note-15-8gb-256gb-glacier-b.avif" alt="Redmi Note 15 256GB Glacier Blue" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi Note 15 256GB Glacier Blue</div>
+          <div class="product-price">6 990 Kč</div>
+          <div class="product-monthly">od 194 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-note-15-pro-5g-8gb-256gb-bl.avif" alt="Redmi Note 15 Pro 5G 256GB" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi Note 15 Pro 5G 256GB</div>
+          <span class="product-badge badge-super">SUPER CENA</span>
+          <div class="product-price">7 990 Kč</div>
+          <div class="product-monthly">od 222 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+      <article class="product-card" data-brand="xiaomi">
+        <div class="product-img">
+          <img src="mp_photos/telefony/xiaomi-redmi-note-15-pro-8gb-256gb-black.avif" alt="Redmi Note 15 Pro 256GB Černá" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-brand">Xiaomi</div>
+          <div class="product-name">Redmi Note 15 Pro 256GB Černá</div>
+          <div class="product-price">7 990 Kč</div>
+          <div class="product-monthly">od 222 Kč/měs.</div>
+        </div>
+        <button class="btn-buy">Koupit</button>
+      </article>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+<!-- PROMO -->
+<section class="promo" aria-labelledby="promo-h">
+  <div class="wrap">
+    <div class="promo-card">
+      <div>
+        <div class="promo-eyebrow">Program pronájmu</div>
+        <h2 class="promo-title" id="promo-h">Nevlastni.<br>Užívej.</h2>
+        <p class="promo-sub">Vyzkoušej nejnovější telefon bez závazků. Platíš měsíčně, kdykoli vrátíš nebo vyměníš za novější model. Začínáme od&nbsp;<strong>299 Kč/měs.</strong></p>
+      </div>
+      <button class="btn-yellow-outline">
+        Zjistit více
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-logo">
+          <div class="logo-mark">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#000"><path d="M13 2 4.5 13.5H11L10 22 19.5 10.5H13Z"/></svg>
+          </div>
+          <span class="logo-name">Mobil Pohotovost</span>
+        </div>
+        <p class="footer-desc">Váš specialista na mobilní technologie. Rychlé doručení, záruka 3 roky, 200+ prodejen po celé ČR.</p>
+        <div class="social-row">
+          <a class="social-btn" href="#" aria-label="Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a class="social-btn" href="#" aria-label="YouTube">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Nakupování</h4>
+        <nav class="footer-links">
+          <a href="#">Telefony</a>
+          <a href="#">Tablety</a>
+          <a href="#">Notebooky</a>
+          <a href="#">Chytré hodinky</a>
+          <a href="#">Příslušenství</a>
+          <a href="#">Gaming</a>
+          <a href="#">Použité zboží</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Právě nyní</h4>
+        <nav class="footer-links">
+          <a href="#">Limitované nabídky</a>
+          <a href="#">Pronájem telefonů</a>
+          <a href="#">Výkup telefonu</a>
+          <a href="#">Srovnání</a>
+          <a href="#">Novinky</a>
+          <a href="#">O nás</a>
+          <a href="#">Kariéra</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <div class="contact-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81 19.79 19.79 0 0 1 .46 1.09 2 2 0 0 1 2.18 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 8.09a16 16 0 0 0 6 6l.56-.56a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="cr-text"><strong>800 900 900</strong>Zákaznická linka (zdarma)</div>
+        </div>
+        <div class="contact-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="cr-text"><strong>info@mp.cz</strong>Napište nám kdykoliv</div>
+        </div>
+        <div class="contact-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="cr-text"><strong>Po–Ne 8:00–20:00</strong>Otevírací doba</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Mobil Pohotovost s.r.o. Všechna práva vyhrazena.</span>
+      <div class="footer-legal">
+        <a href="#">Ochrana osobních údajů</a>
+        <a href="#">Obchodní podmínky</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Category filter ─────────────────────────────────
+  const pills   = document.querySelectorAll('.filter-pill');
+  const cards   = document.querySelectorAll('.product-card');
+  const counter = document.getElementById('productCount');
+
+  function applyFilter(filter) {
+    let visible = 0;
+    cards.forEach(card => {
+      const match = filter === 'all' || card.dataset.brand === filter;
+      card.hidden = !match;
+      if (match) visible++;
+    });
+    counter.textContent = visible + ' produktů';
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      applyFilter(pill.dataset.filter);
+    });
+  });
+
+  // ── Nav active state ─────────────────────────────────
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // ── Cart counter ─────────────────────────────────────
+  const cartCount = document.getElementById('cartCount');
+  let cart = 0;
+
+  document.querySelectorAll('.btn-buy').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      cart++;
+      cartCount.textContent = cart;
+      const orig = btn.textContent;
+      btn.textContent = 'Přidáno ✓';
+      btn.style.background = '#1a9c45';
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+      }, 1400);
+    });
+  });
+
+  // ── Header shadow on scroll ───────────────────────────
+  const header = document.querySelector('.header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 4
+      ? '0 2px 16px rgba(0,0,0,0.45)'
+      : 'none';
+  }, { passive: true });
+
+  // ── Search keyboard shortcut ──────────────────────────
+  const searchEl = document.querySelector('.search input');
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault(); searchEl.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchEl) {
+      searchEl.blur();
+    }
+  });
+</script>
+</body>
+</html>
